@@ -1,0 +1,24 @@
+{
+  "name": "dep1-utils",
+  "version": "0.0.1",
+  "main": "build/index",
+  "module": "esm/index",
+  "files": [
+    "build/",
+    "esm/"
+  ],
+  "typings": "build/index.d.ts",
+  "sideEffects": false,
+  "engines": {
+    "node": ">= 12"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc -w"
+  },
+  "devDependencies": {
+    "typescript": "4.4.4"
+  },
+  "author": "Oleksii Levzhynskyi",
+  "license": "UNLICENSED"
+}

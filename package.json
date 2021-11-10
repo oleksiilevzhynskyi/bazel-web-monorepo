@@ -1,0 +1,7 @@
+{
+  "name": "bazel-web-monorepo",
+  "version": "1.0.0",
+  "description": "The simple bazel-web-monorepo",
+  "main": "index.js",
+  "license": "MIT"
+}

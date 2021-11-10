@@ -1,0 +1,11 @@
+{
+  "extends": "../../tools/tsconfig.base.json",
+  "compilerOptions": {
+    "composite": true,
+    "outDir": "build",
+    "rootDir": "./src",
+    "tsBuildInfoFile": "build/tsconfig.tsbuildinfo",
+    "typeRoots": ["node_modules/@types", "../../node_modules/@types"],
+  },
+  "include": ["src/**/*.ts*"]
+}
