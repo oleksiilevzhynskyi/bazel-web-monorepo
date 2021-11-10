@@ -1,0 +1,31 @@
+load("//tools/webpack:index.bzl", "webpack_app")
+
+package(default_visibility = ["//visibility:public"])
+
+webpack_app(
+    name = "webapp",
+    srcs = glob(
+        [
+            "src/**/*",
+            "webpack.config*"
+        ],
+        exclude = [
+            "src/**/*.snap",
+            "src/**/*.spec.ts",
+            "src/**/*.spec.tsx"
+        ],
+    ),
+    data = [
+        "//packages/utils",
+        "@npm//@types/react",
+        "@npm//@types/react-dom",
+        "@npm//@types/webpack-merge",
+        "@npm//css-loader",
+        "@npm//file-loader",
+        "@npm//fork-ts-checker-webpack-plugin",
+        "@npm//html-webpack-plugin",
+        "@npm//react",
+        "@npm//react-dom",
+        "@npm//source-map-loader",
+    ]
+)

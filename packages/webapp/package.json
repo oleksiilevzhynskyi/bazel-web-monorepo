@@ -1,0 +1,36 @@
+{
+  "name": "@grammarly/llama-onboarding",
+  "version": "0.0.0",
+  "description": "The onboarding UI for Llama",
+  "main": "index.js",
+  "repository": "https://github.com/grammarly/denali.git",
+  "author": "Grammarly, Inc.",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "build": "webpack --config webpack.config.ts",
+    "dev": "webpack serve --config webpack.config.dev.ts"
+  },
+  "devDependencies": {
+    "@types/mini-css-extract-plugin": "^2.4.0",
+    "@types/node": "^16.11.7",
+    "@types/webpack": "^5.28.0",
+    "fork-ts-checker-webpack-plugin": "6.4.0",
+    "html-webpack-plugin": "5.5.0",
+    "mini-css-extract-plugin": "^2.4.4",
+    "ts-node": "9.0.0",
+    "tslib": "2.3.1",
+    "typescript": "4.4.4",
+    "ts-loader": "^9.2.6",
+    "webpack": "5.63.0",
+    "webpack-cli": "4.9.1",
+    "webpack-dev-server": "3.11.2",
+    "webpack-merge": "5.8.0"
+  },
+  "dependencies": {
+    "@types/react": "^17.0.34",
+    "@types/react-dom": "^17.0.11",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}
