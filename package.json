@@ -3,5 +3,12 @@
   "version": "1.0.0",
   "description": "The simple bazel-web-monorepo",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@bazel/bazelisk": "1.7.3",
+    "@bazel/typescript": "4.4.5"
+  },
+  "devDependencies": {
+    "typescript": "4.4.4"
+  }
 }

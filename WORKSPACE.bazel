@@ -1,0 +1,64 @@
+# Bazel workspace created by @bazel/create 2.3.1
+
+# Declares that this directory is the root of a Bazel workspace.
+# See https://docs.bazel.build/versions/master/build-ref.html#workspace
+workspace(
+    # How this workspace would be referenced with absolute labels from another workspace
+    name = "bazel-web-monorepo",
+    # Map the @npm bazel workspace to the node_modules directory.
+    # This lets Bazel use the same node_modules as other local tooling.
+    managed_directories = {"@npm": ["node_modules"]},
+)
+
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+http_archive(
+    name = "bazel_skylib",
+    sha256 = "1c531376ac7e5a180e0237938a2536de0c54d93f5c278634818e0efc952dd56c",
+    urls = [
+        "https://github.com/bazelbuild/bazel-skylib/releases/download/1.0.3/bazel-skylib-1.0.3.tar.gz",
+        "https://mirror.bazel.build/github.com/bazelbuild/bazel-skylib/releases/download/1.0.3/bazel-skylib-1.0.3.tar.gz",
+    ],
+)
+
+http_archive(
+    name = "build_bazel_rules_nodejs",
+    sha256 = "f7037c8e295fdc921f714962aee7c496110052511e2b14076bd8e2d46bc9819c",
+    urls = ["https://github.com/bazelbuild/rules_nodejs/releases/download/4.4.5/rules_nodejs-4.4.5.tar.gz"],
+)
+
+load("@bazel_skylib//:workspace.bzl", "bazel_skylib_workspace")
+
+bazel_skylib_workspace()
+
+load("@build_bazel_rules_nodejs//:index.bzl", "node_repositories", "yarn_install")
+
+# Setup the Node.js toolchain
+node_repositories(
+    # override bazel mirror, to official nodejs dist
+    node_urls = ["https://nodejs.org/dist/v{version}/{filename}"],
+    node_version = "12.22.0",
+    package_json = ["//:package.json"],
+    yarn_version = "1.19.1",
+)
+
+# There are two possible straragies
+# 1. Create a separate `yarn_install` for each packages with own yarn.lock
+# 2. Duplicate all deps in root package.json - e.g. use same versinos of packages for all monorepo
+#
+# We're going to use the second approach, as using the same "instances/version" avoid 
+# clashes of deps incompatibility in production code (e.g. issue with instanceof)
+#
+yarn_install(
+    # Name this npm so that Bazel Label references look like @npm//<package>
+    name = "npm",
+    # Symlink only npm packages directories instead of every file to improve performance
+    exports_directories_only = True,
+    package_json = "//:package.json",
+    quiet = False,
+    # Allow to add a Bazel dependency on a library that isn't listed as a dependency in package.json.
+    strict_visibility = False,
+    # post_install_patches path doesn't work w/o symlink_node_modules = False
+    symlink_node_modules = True,
+    yarn_lock = "//:yarn.lock",
+)
