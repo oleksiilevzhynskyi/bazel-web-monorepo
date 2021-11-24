@@ -24,7 +24,7 @@ def tsc_package(name, package_name, tsconfig, out_dir, srcs, deps, ts_config_ove
 
     # macros to build tsc project
     ts_project(
-        name = name,
+        name = name + "_src",
         tsconfig = "tsconfig_%s.json" % name,
         extends = "%s_tsconfig" % name,
         srcs = srcs,
@@ -45,10 +45,10 @@ def tsc_package(name, package_name, tsconfig, out_dir, srcs, deps, ts_config_ove
     # Make an internal npm package from the output
     # Could be referecend by //packages/<my_package> in deps for another package
     js_library(
-        name = "%s_lib" % name,
-        srcs = srcs,
+        name = name,
+        srcs = srcs + ["package.json"],
         # Code that depends on this target can import from
         package_name = package_name,
         # The .js and .d.ts outputs from above will be part of the package
-        deps = deps,
+        deps = [":" + name + "_src"],
     )

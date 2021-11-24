@@ -5,12 +5,12 @@ package(default_visibility = ["//visibility:public"])
 tsc_package(
     name = "utils",
     out_dir = "build",
-    package_name = "@my-project/utils",
+    package_name = "@bazel-denali-repo/utils",
     deps = [
-        # "@npm//tslib",
         "@npm//typescript",
     ],
     srcs = glob(["src/**/*.ts", "src/**/*.tsx"]),
     tsconfig = ":tsconfig.json",
     ts_config_overrides = {}
 )
+

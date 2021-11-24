@@ -20,12 +20,18 @@
     "types": [
       "webpack",
       "node"
-    ]
+    ],
+    "paths": {
+      "@bazel-denali-repo/utils": ["../../utils"]
+    },
   },
   "ts-node": {
     "compilerOptions": {
       "module": "CommonJS"
     }
   },
-  "include": ["./src/**/*.ts*", "webpack.config*"]
+  "include": ["./src/**/*.ts*", "webpack.config*"],
+  "references": [
+    { "path": "../utils" }
+  ]
 }

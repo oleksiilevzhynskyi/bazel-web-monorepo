@@ -3,6 +3,7 @@ import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import path from 'path'
 import webpack from 'webpack'
+import 'webpack-dev-server'
 
 export const dist = path.resolve(__dirname, 'dist')
 export const context = path.resolve(process.cwd(), '../')

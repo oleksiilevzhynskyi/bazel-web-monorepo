@@ -56,6 +56,7 @@ yarn_install(
     exports_directories_only = True,
     package_json = "//:package.json",
     quiet = False,
+    frozen_lockfile = False,
     # Allow to add a Bazel dependency on a library that isn't listed as a dependency in package.json.
     strict_visibility = False,
     # post_install_patches path doesn't work w/o symlink_node_modules = False

@@ -1,5 +1,5 @@
 {
-  "name": "dep1-utils",
+  "name": "@bazel-denali-repo/utils",
   "version": "0.0.1",
   "main": "build/index",
   "module": "esm/index",
@@ -11,10 +11,6 @@
   "sideEffects": false,
   "engines": {
     "node": ">= 12"
-  },
-  "scripts": {
-    "build": "tsc",
-    "dev": "tsc -w"
   },
   "devDependencies": {
     "typescript": "4.4.4"
