@@ -7,6 +7,7 @@ package(default_visibility = ["//visibility:public"])
 #
 # - `yarn bazel build //packages/webapp` - build
 # - `yarn ibazel run //packages/webapp:serve` - incremental build (http://localhost:8080)
+# - `yarn bazel test //packages/webapp:test` - tests
 webpack_app(
     name = "webapp",
     srcs = glob(

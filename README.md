@@ -15,12 +15,13 @@
 
 - `yarn bazel build //packages/webapp` - build
 - `yarn ibazel run //packages/webapp:serve` to run in incremental mode with a local dev server. The site is available at http://localhost:8080
+- `yarn bazel test //packages/webapp:test` - tests
 
 ### Utils
 
 - `yarn bazel build //packages/utils` - build
 - `yarn ibazel build //packages/utils` - incremental build
-- `yarn bazel test //packages/utils:test` - test
+- `yarn bazel test //packages/utils:test` - tests
 
 ### Bulk commands
 

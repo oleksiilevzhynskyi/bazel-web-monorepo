@@ -1,5 +1,6 @@
 load("@npm//webpack-cli:index.bzl", "webpack_cli")
 load("@npm//webpack:index.bzl", "webpack")
+load("//tools/jest:index.bzl", "jest_test")
 
 def webpack_app(name, data, srcs, outs = ["dist"], webpack_config_path = "webpack.config.ts", webpack_serve_config_path = "webpack.config.dev.ts"):
     default_deps = [
@@ -57,6 +58,17 @@ def webpack_app(name, data, srcs, outs = ["dist"], webpack_config_path = "webpac
         tags = [
             # Keeps the server alive under ibazel
             "ibazel_notify_changes",
+        ],
+    )
+
+    jest_test(
+        name = "test",
+        srcs = srcs + native.glob(["__snapshots__/*.snap", "**/*.spec.ts"]),
+        jest_config = "//tools/jest:jest.config.js",
+        deps = data + [
+            "@npm//jest",
+            "@npm//@types/jest",
+            "@npm//ts-jest",
         ],
     )
 
