@@ -1,7 +1,12 @@
 load("//tools/webpack:index.bzl", "webpack_app")
 
+# Allow referencing this package within the workspace
 package(default_visibility = ["//visibility:public"])
 
+# webpack_app macros creates a commands for build:
+#
+# - `yarn bazel build //packages/webapp` - build
+# - `yarn ibazel run //packages/webapp:serve` - incremental build (http://localhost:8080)
 webpack_app(
     name = "webapp",
     srcs = glob(

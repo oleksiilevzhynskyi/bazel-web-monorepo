@@ -1,3 +1,5 @@
+# Example of how to define a custom configuration
+# add --config=debug for any bazel cmd to enable verbose mode
 build:debug --worker_verbose --verbose_failures --define=VERBOSE_LOGS=1
 
 # By default, failing tests don't print any output, it's logged to a

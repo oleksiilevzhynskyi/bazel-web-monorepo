@@ -1,3 +1,4 @@
+// Copy-paste from https://github.com/bazelbuild/rules_nodejs/blob/stable/examples/jest/jest-reporter.js
 class BazelReporter {
   onRunComplete(_, results) {
     if (results.numFailedTests && results.snapshot.failure) {

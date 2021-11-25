@@ -14,6 +14,7 @@ def webpack_app(name, data, srcs, outs = ["dist"], webpack_config_path = "webpac
         "@npm//webpack-merge",
     ]
 
+    # Build with webpack cli and "prod" config
     webpack_cli(
         name = name,
         outs = outs,
@@ -50,6 +51,7 @@ def webpack_app(name, data, srcs, outs = ["dist"], webpack_config_path = "webpac
             "//tools:tsconfig.base.json"
         ],
         env = {
+            # Explicitly specify TS_NODE_PROJECT to be able to use TS for webpack configs
             "TS_NODE_PROJECT": "$(rootpath //tools/webpack:tsconfig.webpack.json)",
         },
         tags = [

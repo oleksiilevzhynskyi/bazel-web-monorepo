@@ -5,6 +5,9 @@ interface State {
 const log = (...text: string[]) => console.log(...text);
 const errorLog = (...text: string[]) => console.error(...text);
 
+/**
+ * ibazelListener listens for `ibazel` events and calls @param cb whenever the state changes. 
+ */
 export const ibazelListener = (cb: (state: State) => void) => {
   let startedBuildsCount = 0;
   let resumeTimeout: NodeJS.Timeout;

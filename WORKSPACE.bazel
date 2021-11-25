@@ -12,6 +12,7 @@ workspace(
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
+# Bazel itself
 http_archive(
     name = "bazel_skylib",
     sha256 = "1c531376ac7e5a180e0237938a2536de0c54d93f5c278634818e0efc952dd56c",
@@ -21,6 +22,8 @@ http_archive(
     ],
 )
 
+# The nodejs rules integrate NodeJS development toolchain and runtime with Bazel.
+# https://github.com/bazelbuild/rules_nodejs
 http_archive(
     name = "build_bazel_rules_nodejs",
     sha256 = "f7037c8e295fdc921f714962aee7c496110052511e2b14076bd8e2d46bc9819c",
@@ -42,13 +45,12 @@ node_repositories(
     yarn_version = "1.19.1",
 )
 
-# There are two possible straragies
-# 1. Create a separate `yarn_install` for each packages with own yarn.lock
-# 2. Duplicate all deps in root package.json - e.g. use same versinos of packages for all monorepo
+# There are two possible strategies
+# 1. Create a separate `yarn_install` for each package with its yarn.lock
+# 2. Duplicate all dependencies in root package.json - e.g., use same versions of packages for all monorepo
 #
 # We're going to use the second approach, as using the same "instances/version" avoid 
 # clashes of deps incompatibility in production code (e.g. issue with instanceof)
-#
 yarn_install(
     # Name this npm so that Bazel Label references look like @npm//<package>
     name = "npm",
