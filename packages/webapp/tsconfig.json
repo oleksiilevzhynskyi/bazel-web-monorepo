@@ -17,14 +17,10 @@
     "sourceMap": true,
     "strict": true,
     "typeRoots": ["node_modules/@types", "../../node_modules/@types"],
-    "types": [
-      "webpack",
-      "node",
-      "jest"
-    ],
+    "types": ["webpack", "node", "jest"],
     "paths": {
       "@bazel-denali-repo/utils": ["../../utils"]
-    },
+    }
   },
   "ts-node": {
     "compilerOptions": {
@@ -32,7 +28,5 @@
     }
   },
   "include": ["./src/**/*.ts*", "webpack.config*"],
-  "references": [
-    { "path": "../utils" }
-  ]
+  "references": [{ "path": "../utils" }]
 }
