@@ -1,6 +1,7 @@
 load("@build_bazel_rules_nodejs//:index.bzl", "js_library")
 load("@npm//@bazel/typescript:index.bzl", "ts_config", "ts_project")
 load("@npm//@bazel/typescript/internal:ts_config.bzl", "write_tsconfig")
+load("//tools/jest:index.bzl", "jest_test")
 
 def tsc_package(name, package_name, tsconfig, out_dir, srcs, deps, ts_config_overrides):
     """Default values for ts_project"""
@@ -51,4 +52,15 @@ def tsc_package(name, package_name, tsconfig, out_dir, srcs, deps, ts_config_ove
         package_name = package_name,
         # The .js and .d.ts outputs from above will be part of the package
         deps = [":" + name + "_src"],
+    )
+
+    jest_test(
+        name = "test",
+        srcs = srcs + native.glob(["__snapshots__/*.snap"]),
+        jest_config = "//tools/jest:jest.config.js",
+        deps = [
+            "@npm//jest",
+            "@npm//@types/jest",
+            "@npm//ts-jest",
+        ],
     )

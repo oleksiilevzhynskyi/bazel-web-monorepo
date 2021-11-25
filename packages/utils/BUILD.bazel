@@ -1,7 +1,5 @@
 load("//tools/tsc:index.bzl", "tsc_package")
 
-package(default_visibility = ["//visibility:public"])
-
 tsc_package(
     name = "utils",
     out_dir = "build",
@@ -13,4 +11,3 @@ tsc_package(
     tsconfig = ":tsconfig.json",
     ts_config_overrides = {}
 )
-

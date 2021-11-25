@@ -6,10 +6,12 @@
   "license": "MIT",
   "dependencies": {
     "@bazel/bazelisk": "1.7.3",
-    "@bazel/typescript": "4.4.5"
+    "@bazel/typescript": "4.4.5",
+    "ts-jest": "^27.0.7"
   },
   "devDependencies": {
     "@bazel/ibazel": "0.15.10",
+    "@types/jest": "^27.0.3",
     "@types/mini-css-extract-plugin": "^2.4.0",
     "@types/node": "^16.11.7",
     "@types/react": "^17.0.34",
@@ -21,6 +23,7 @@
     "file-loader": "3.0.1",
     "fork-ts-checker-webpack-plugin": "6.4.0",
     "html-webpack-plugin": "5.5.0",
+    "jest": "^27.3.1",
     "mini-css-extract-plugin": "^2.4.4",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

@@ -1,0 +1,5 @@
+build:debug --worker_verbose --verbose_failures --define=VERBOSE_LOGS=1
+
+# By default, failing tests don't print any output, it's logged to a
+# file instead.
+test --test_output=all --test_summary=detailed --build_tests_only

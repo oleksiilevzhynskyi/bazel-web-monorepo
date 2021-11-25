@@ -19,7 +19,8 @@
     "typeRoots": ["node_modules/@types", "../../node_modules/@types"],
     "types": [
       "webpack",
-      "node"
+      "node",
+      "jest"
     ],
     "paths": {
       "@bazel-denali-repo/utils": ["../../utils"]
