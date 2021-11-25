@@ -1,5 +1,12 @@
 load("//tools/tsc:index.bzl", "tsc_package")
 
+package(default_visibility = ["//visibility:public"])
+
+# tsc_package macros creates a commands for build and tests:
+#
+# - `yarn bazel build //packages/utils` - build
+# - `yarn ibazel build //packages/utils` - incremental build
+# - `yarn bazel test //packages/utils:test` - test
 tsc_package(
     name = "utils",
     out_dir = "build",
@@ -7,7 +14,7 @@ tsc_package(
     deps = [
         "@npm//typescript",
     ],
-    srcs = glob(["src/**/*.ts", "src/**/*.tsx"]),
+    srcs = glob(["src/**/*.ts", "src/**/*.tsx"], exclude = ["src/__test__/**"]),
     tsconfig = ":tsconfig.json",
     ts_config_overrides = {}
 )

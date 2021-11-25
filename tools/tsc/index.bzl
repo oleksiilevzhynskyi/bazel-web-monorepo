@@ -13,7 +13,7 @@ def tsc_package(name, package_name, tsconfig, out_dir, srcs, deps, ts_config_ove
         deps = ["//tools:tsconfig.base.json"],
     )
 
-    # here we create a custom, each per ts_project output target (cjs, esm, es2015) tsconfig
+    # here we create a custom, each per ts_project output target tsconfig
     # and extend it from (pkg:tsconfig -> tools:tsconfig.base) created previously.
     write_tsconfig(
         name = "_gen_tsconfig_%s" % name,
@@ -29,7 +29,7 @@ def tsc_package(name, package_name, tsconfig, out_dir, srcs, deps, ts_config_ove
         tsconfig = "tsconfig_%s.json" % name,
         extends = "%s_tsconfig" % name,
         srcs = srcs,
-        deps = deps + ["@npm//tslib"],
+        deps = deps + ["@npm//tslib", "@npm//@types/jest"],
         out_dir = out_dir,
         root_dir = "src",
         composite = True,
@@ -56,7 +56,7 @@ def tsc_package(name, package_name, tsconfig, out_dir, srcs, deps, ts_config_ove
 
     jest_test(
         name = "test",
-        srcs = srcs + native.glob(["__snapshots__/*.snap"]),
+        srcs = srcs + native.glob(["__snapshots__/*.snap", "**/*.spec.ts"]),
         jest_config = "//tools/jest:jest.config.js",
         deps = [
             "@npm//jest",
