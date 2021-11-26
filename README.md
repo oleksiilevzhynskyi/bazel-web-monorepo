@@ -1,5 +1,17 @@
 # This is an example of a Bazel-based web application made for talk ["How to Use Bazel to Manage Monorepos: The Grammarly Front-End Team's Experience"](https://fwdays.com/en/event/js-autumn-fwdays-2021/review/how-to-use-bazel-to-manage-monorepos-the-grammarly-front-end-teams-experience)
 
+## Ho to start
+
+```sh
+# install dependencies needed for Bazel
+yarn install --production
+
+# run a webapp
+yarn ibazel run //packages/webapp:serve
+
+# open https://localhost:8080
+```
+
 ## The project structure
 
 - `WORKSPACE.bazel` represents the Bazel project and specifies the Bazel version, npm dependencies, and general configuration. The common practice is to use "@npm" namespace for all npm dependencies; namespace is defined by `yarn_install(name = "npm")` in WORKSPACE.bazel file
